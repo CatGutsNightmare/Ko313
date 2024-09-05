@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bahbb4i4tknyh"]
+
+[ext_resource type="Texture2D" uid="uid://g3occ33nktk7" path="res://Sprites/Agnostrup.png" id="1_ablg2"]
+[ext_resource type="Script" path="res://Components/Graphics/stack_renderer.gd" id="1_grl68"]
+
+[node name="StackRenderer" type="Sprite2D"]
+texture = ExtResource("1_ablg2")
+hframes = 4
+script = ExtResource("1_grl68")

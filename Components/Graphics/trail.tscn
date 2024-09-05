@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://gklr4brsy35a"]
+
+[ext_resource type="Script" path="res://Components/Graphics/trail.gd" id="1_vulau"]
+
+[node name="Trail" type="Line2D"]
+width = 1.0
+default_color = Color(1, 0.988235, 0.25098, 1)
+script = ExtResource("1_vulau")
+max_points = 25

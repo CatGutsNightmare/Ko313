@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgoutolqicc3h"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_68hvw"]
+[ext_resource type="PackedScene" uid="uid://bahbb4i4tknyh" path="res://Components/Graphics/stack_renderer.tscn" id="2_a4crk"]
+[ext_resource type="PackedScene" uid="uid://gklr4brsy35a" path="res://Components/Graphics/trail.tscn" id="3_8jpax"]
+[ext_resource type="Texture2D" uid="uid://dipj45mb6vfus" path="res://Sprites/Synoeca.png" id="3_uqi4r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xun0d"]
+size = Vector2(8, 1)
+
+[sub_resource type="Curve" id="Curve_n6y4w"]
+_data = [Vector2(0, 0.505494), 0.0, 1.82967, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_68hvw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xun0d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="StackRenderer" parent="." instance=ExtResource("2_a4crk")]
+position = Vector2(0, 0.5)
+texture = ExtResource("3_uqi4r")
+hframes = 3
+frame = 1
+z_depth_offset = 1
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-7, 0)
+
+[node name="Trail" parent="Marker2D" instance=ExtResource("3_8jpax")]
+width_curve = SubResource("Curve_n6y4w")
+max_points = 50
+lifetime = 1.0
+
+[node name="EOTTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="EOTTimer" to="." method="_on_eot_timer_timeout"]
