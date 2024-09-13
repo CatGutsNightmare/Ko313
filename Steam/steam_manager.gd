@@ -3,15 +3,15 @@ extends Node
 var is_on_steam_deck: bool = false
 var is_online: bool = false
 var is_owned: bool =false
-var steam_app_id: int = 480
+var steam_app_id: int = 3227800
 var steam_id: int = 0
 var steam_username: String = ""
 
 
 func _init() -> void:
 	# Set your game's Steam app ID here
-	OS.set_environment("SteamAppId", str(480))
-	OS.set_environment("SteamGameId", str(480))
+	OS.set_environment("SteamAppId", str(3227800))
+	OS.set_environment("SteamGameId", str(3227800))
 
 func _ready() -> void:
 	initialize_steam()

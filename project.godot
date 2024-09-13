@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MultiplayerManager="*res://Multiplayer/multiplayer_manager.gd"
-SteamManager="*res://steam_manager.gd"
+MultiplayerManager="*res://MultiplayerEnet/multiplayer_manager.gd"
+SteamManager="*res://Steam/steam_manager.gd"
 
 [display]
 
