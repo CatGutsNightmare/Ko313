@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6nlm6l65w442"]
+[gd_scene load_steps=3 format=3 uid="uid://b6nlm6l65w442"]
 
 [ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_ih7xs"]
+[ext_resource type="Texture2D" uid="uid://bm5m16f8tdx3l" path="res://default-avatar-small.png" id="2_rjekm"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -12,30 +13,56 @@ grow_vertical = 2
 script = ExtResource("1_ih7xs")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
+offset_right = 512.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="Start" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="Singleplayer" type="Button" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Start"
+text = "Singleplayer"
 
-[node name="Host" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="Multiplayer" type="Button" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Host"
+text = "Multiplayer"
 
-[node name="Join" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="Options" type="Button" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Join"
+text = "Options"
 
 [node name="Quit" type="Button" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+offset_left = 362.0
+offset_right = 512.0
+offset_bottom = 40.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Name" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 40.0
+offset_top = 4.0
+offset_right = 145.0
+offset_bottom = 36.0
+
+[node name="Portrait" type="TextureRect" parent="Panel"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 36.0
+offset_bottom = 36.0
+texture = ExtResource("2_rjekm")
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Singleplayer" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
