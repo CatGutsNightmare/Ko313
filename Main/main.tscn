@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpbawol0vdmgy"]
+[gd_scene load_steps=3 format=3 uid="uid://dpbawol0vdmgy"]
 
 [ext_resource type="Script" path="res://Main/main.gd" id="1_b4604"]
+[ext_resource type="Script" path="res://Main/game_manager.gd" id="2_rgkvh"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_b4604")
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
+script = ExtResource("2_rgkvh")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("../Players")
