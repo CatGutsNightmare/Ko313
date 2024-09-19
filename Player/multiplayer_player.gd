@@ -12,15 +12,25 @@ var rotation_direction = 0
 var acceleration = 5
 var drag = 0.3
 
+
+@export var player_id := 1:
+	set(id):
+		player_id = id
+		%InputSynchronizer.set_multiplayer_authority(id)
+
+
 @onready var renderer : StackRenderer = $StackRenderer
 @onready var EOTTimer := $EOTTimer
 
 @onready var bullet_instance := preload("res://Projectiles/bullet.tscn")
 
 func _physics_process(delta):
-	capture_inputs()
+	if multiplayer.is_server():
+		_apply_movement_from_input(delta)
+	
+	#capture_inputs()
 	set_speed()
-	calculate_velocity(transform.x, acceleration, drag)
+	calculate_velocity(transform.x)
 	calculate_rotation(delta)
 	
 	if Input.is_action_just_pressed("button1"):
@@ -34,20 +44,9 @@ func _physics_process(delta):
 	#look_at(get_global_mouse_position())
 	renderer.roatate_stack(rotation)
 
-func capture_inputs():
-	if Input.is_action_pressed("up") && EOT <=6 && eot_timer == true:
-		eot_timer = false
-		EOTTimer.start()
-		EOT += 1
-	elif Input.is_action_just_pressed("up") && EOT <=6:
-		EOT += 1
-	elif Input.is_action_pressed("down") && EOT >= 0 && eot_timer == true:
-		eot_timer = false
-		EOTTimer.start()
-		EOT+= -1
-	elif Input.is_action_just_pressed("down") && EOT >= 0:
-		EOT+= -1
-	rotation_direction = Input.get_axis("left", "right") 
+func _apply_movement_from_input(delta):
+	EOT = %InputSynchronizer.EOT
+	rotation_direction = %InputSynchronizer.input_direction
 
 func set_speed():
 	match EOT:
@@ -66,7 +65,7 @@ func set_speed():
 		6: 
 			desired_speed = speeds.FULLAHEAD
 
-func calculate_velocity(transform_factor, acceleration, drag):
+func calculate_velocity(transform_factor):
 	
 	if current_speed < desired_speed:
 		current_speed += acceleration * drag

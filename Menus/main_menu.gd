@@ -6,13 +6,10 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Helper.connect_signal(Steam.avatar_loaded, _on_avatar_loaded, 2)
+	Helper.connect_signal(Steam.avatar_loaded, _on_avatar_loaded)
 	Steam.getPlayerAvatar(Steam.AVATAR_SMALL, Global.steam_id)
 	name_container.set_text(str(Global.steam_username))
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 
 func _on_start_pressed() -> void:
@@ -25,7 +22,7 @@ func _on_multiplayer_pressed() -> void:
 	queue_free()
 
 
-func _on_options_pressed(which: String) -> void:
+func _on_options_pressed() -> void:
 	pass # Replace with function body.
 
 

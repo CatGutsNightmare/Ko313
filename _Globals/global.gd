@@ -15,7 +15,7 @@ func _ready() -> void:
 	print("Starting the GodotSteam example project...")
 	_initialize_steam()
 	
-	Helper.connect_signal(Steam.steamworks_error, _on_steamworks_error, 2)
+	Helper.connect_signal(Steam.steamworks_error, _on_steamworks_error)
 
 	if is_on_steam_deck:
 		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN

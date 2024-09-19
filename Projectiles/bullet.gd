@@ -17,19 +17,18 @@ func _ready() -> void:
 	desired_speed =  250
 
 func _physics_process(delta: float) -> void:
-	velocity = calculate_velocity(delta, transform.x,acceleration,drag)
+	calculate_velocity(transform.x)
 	var collision = move_and_collide(velocity*delta)
 	if collision:
 		queue_free()
 
-func calculate_velocity(delta, transform_factor, acceleration, drag):
+func calculate_velocity( transform_factor):
 	if current_speed < desired_speed:
 		current_speed += acceleration * drag
 	elif current_speed > desired_speed:
 		current_speed -= acceleration * drag
-	var velocity = transform_factor * current_speed 
-	return velocity 
+	velocity = transform_factor * current_speed 
+	
 
-func calculate_rotation(delta, rotation, rotation_speed):
+func calculate_rotation(delta, rotation_speed):
 	rotation += rotation_direction * rotation_speed * delta
-	return rotation
