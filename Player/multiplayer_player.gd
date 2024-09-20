@@ -23,7 +23,11 @@ var drag = 0.3
 @onready var EOTTimer := $EOTTimer
 
 @onready var bullet_instance := preload("res://Projectiles/bullet.tscn")
-
+func _ready() -> void:
+	if multiplayer.get_unique_id() == player_id:
+		$Camera2D.make_current()
+	else:
+		$Camera2D.enabled = false
 func _physics_process(delta):
 	if multiplayer.is_server():
 		_apply_movement_from_input(delta)
@@ -33,13 +37,6 @@ func _physics_process(delta):
 	calculate_velocity(transform.x)
 	calculate_rotation(delta)
 	
-	if Input.is_action_just_pressed("button1"):
-		var new_shot = bullet_instance.instantiate()
-		new_shot.rotation = rotation
-		new_shot.global_position = global_position
-		get_node("/root").add_child(new_shot)
-		
-
 
 	#look_at(get_global_mouse_position())
 	renderer.roatate_stack(rotation)
@@ -79,6 +76,11 @@ func calculate_velocity(transform_factor):
 func calculate_rotation(delta):
 	rotation += rotation_direction * rotation_speed * delta
 
+func fire():
+		var new_shot = bullet_instance.instantiate()
+		new_shot.rotation = rotation
+		new_shot.global_position = global_position
+		get_node("/root").add_child(new_shot)
 
 func _on_eot_timer_timeout() -> void:
 	eot_timer = true

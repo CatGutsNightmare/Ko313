@@ -2,6 +2,8 @@ extends MultiplayerSynchronizer
 
 var input_direction
 var EOT = 3
+
+@onready var player = $".."
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if get_multiplayer_authority() != multiplayer.get_unique_id():
@@ -25,3 +27,12 @@ func _physics_process(delta: float) -> void:
 		EOT+= -1
 		
 	input_direction = Input.get_axis("left", "right") 
+	
+	if Input.is_action_just_pressed("button1"):
+		fire_wapon.rpc()
+
+@rpc("call_local")
+func fire_wapon():
+	#if multiplayer.is_server():
+	player.fire()
+	
