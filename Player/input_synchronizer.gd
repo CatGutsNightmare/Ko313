@@ -15,12 +15,13 @@ func _physics_process(delta: float) -> void:
 		get_parent().eot_timer = false
 		get_parent().EOTTimer.start()
 		EOT += 1
-	elif Input.is_action_just_pressed("up") && EOT <=6:
+	elif Input.is_action_just_pressed("up") && EOT <6:
 		EOT += 1
-	elif Input.is_action_pressed("down") && EOT >= 0 && get_parent().eot_timer == true:
+	elif Input.is_action_pressed("down") && EOT > 0 && get_parent().eot_timer == true:
 		get_parent().eot_timer = false
 		get_parent().EOTTimer.start()
 		EOT+= -1
-	elif Input.is_action_just_pressed("down") && EOT >= 0:
+	elif Input.is_action_just_pressed("down") && EOT > 0:
 		EOT+= -1
+		
 	input_direction = Input.get_axis("left", "right") 

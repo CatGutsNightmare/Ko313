@@ -1,10 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://xal0nlxov070"]
+[gd_scene load_steps=10 format=3 uid="uid://xal0nlxov070"]
 
 [ext_resource type="Script" path="res://Player/multiplayer_player.gd" id="1_e71w7"]
 [ext_resource type="Script" path="res://Player/input_synchronizer.gd" id="2_kohl8"]
 [ext_resource type="PackedScene" uid="uid://bahbb4i4tknyh" path="res://Components/Graphics/stack_renderer.tscn" id="2_qco6b"]
 [ext_resource type="Texture2D" uid="uid://dipj45mb6vfus" path="res://Sprites/Synoeca.png" id="3_xymqa"]
 [ext_resource type="PackedScene" uid="uid://gklr4brsy35a" path="res://Components/Graphics/trail.tscn" id="4_u67ox"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5atoc"]
+properties/0/path = NodePath(".:player_id")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bnadf"]
 properties/0/path = NodePath("InputSynchronizer:input_direction")
@@ -26,13 +37,13 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_e71w7")
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_5atoc")
+
 [node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
 unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_bnadf")
 script = ExtResource("2_kohl8")
-
-[node name="MultiplayerSynchronizer2" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_bnadf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xun0d")

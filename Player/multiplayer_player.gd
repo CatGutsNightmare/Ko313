@@ -40,13 +40,14 @@ func _physics_process(delta):
 		get_node("/root").add_child(new_shot)
 		
 
-	move_and_slide()
+
 	#look_at(get_global_mouse_position())
 	renderer.roatate_stack(rotation)
 
 func _apply_movement_from_input(delta):
 	EOT = %InputSynchronizer.EOT
 	rotation_direction = %InputSynchronizer.input_direction
+	move_and_slide()
 
 func set_speed():
 	match EOT:

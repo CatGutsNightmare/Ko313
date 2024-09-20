@@ -6,8 +6,6 @@ var acceleration = 5
 var drag = 0.3
 var rotation_direction = 0
 
-@onready var renderer : StackRenderer = $StackRenderer
-@onready var EOTTimer := $EOTTimer
 
 @onready var bullet_instance := preload("res://Projectiles/bullet.tscn")
 
