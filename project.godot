@@ -15,9 +15,16 @@ run/main_scene="res://Main/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/snap/snap_2d_vertices_to_pixel=true
+
 [autoload]
 
-MultiplayerManager="*res://Multiplayer/multiplayer_manager.gd"
+Helper="*res://_Globals/helper.gd"
+Menus="*res://_Globals/menus.gd"
+Global="*res://_Globals/global.gd"
+MultiplayerManager="*res://_Globals/multiplayer_manager.gd"
 
 [display]
 

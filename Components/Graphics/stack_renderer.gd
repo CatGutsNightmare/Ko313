@@ -23,8 +23,6 @@ func roatate_stack(rotation_amount):
 		sprite.rotation = rotation_amount
 		
 func _process(delta):
-	#total_rotation += delta
-	#roatate_stack(total_rotation)
 	global_rotation = 0
 
 func _ready() -> void:

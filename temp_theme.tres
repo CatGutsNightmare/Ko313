@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ot7f31a4ackc"]
+
+[ext_resource type="FontFile" uid="uid://csgu866on7tay" path="res://PixelSmall.ttf" id="1_j65wj"]
+
+[resource]
+default_font = ExtResource("1_j65wj")
+/fonts/font = ExtResource("1_j65wj")
