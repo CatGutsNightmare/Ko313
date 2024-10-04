@@ -75,3 +75,5 @@ layout_mode = 2
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Browse" to="." method="_on_browse_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="SteamHud/Panel/Options/HostP2PGame" to="." method="_on_host_p_2p_game_pressed"]
+[connection signal="pressed" from="SteamHud/Panel/Options/ListLobbies" to="." method="_on_list_lobbies_pressed"]

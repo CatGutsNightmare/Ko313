@@ -3,16 +3,21 @@ extends Node
 # GODOTSTEAM YOINKY SPLOINKIED STRAIGHT INTO MY PROJECT YO
 #################################################
 
+var steam_ap_id = 480 #3227800
+
 var is_on_steam: bool = false
 var is_on_steam_deck: bool = false
 var is_online: bool = false
 var is_owned: bool = false
+
 var steam_id: int = 0
 var steam_username: String = "[not set]"
 
+var lobby_id = 0
+var lobby_max_members = 4
 
 func _ready() -> void:
-	print("Starting the GodotSteam example project...")
+	print("Starting the Ko313...")
 	_initialize_steam()
 	
 	Helper.connect_signal(Steam.steamworks_error, _on_steamworks_error)
@@ -25,21 +30,20 @@ func _process(_delta: float) -> void:
 	if is_on_steam:
 		Steam.run_callbacks()
 
-
+func _init() -> void:
+	print("Init Steam")
+	if Engine.has_singleton("Steam"):
+		OS.set_environment("SteamAppId", str(steam_ap_id))
+		OS.set_environment("SteamGameId", str(steam_ap_id))
+		
 #################################################
 # INITIALIZING STEAM
 #################################################
 
 func _initialize_steam() -> void:
-	if Engine.has_singleton("Steam"):
-		OS.set_environment("SteamAppId", str(3227800))
-		OS.set_environment("SteamGameId", str(3227800))
-		
-		var init_response: Dictionary = Steam.steamInit(false)
-		# If the status isn't one, print out the possible error and quit the program
-		if init_response['status'] != 1:
-			printerr("[STEAM] Failed to initialize: %s Shutting down..." % 
-				str(init_response['verbal']))
+		var init_response: Dictionary = Steam.steamInitEx()
+		if init_response['status'] > 0 :
+			printerr("[STEAM] Failed to initialize: %s Shutting down..." % str(init_response['verbal']))
 			get_tree().quit()
 
 		# Is the user actually using Steam; if false, 
@@ -57,16 +61,6 @@ func _initialize_steam() -> void:
 		# Check if account owns the game
 		is_owned = Steam.isSubscribed()
 		
-		if is_owned == false:
-			printerr("[STEAM] User does not own this game")
-			# Uncomment this line to be a narc
-			#get_tree().quit()
-		
-	else:
-		printerr("Engine does not have the Steam Singleton! Please make sure \n
-		you add GodotSteam as a GDNative / GDExtension Plug-in, or with a \n
-		compiled Godot version including GodotSteam / Steamworks.\n\n
-		For more information, visit https://godotsteam.com/")
 
 
 # Intended to serve as generic error messaging for failed call results.
