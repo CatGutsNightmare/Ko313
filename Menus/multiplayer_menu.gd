@@ -18,7 +18,7 @@ func _on_host_pressed() -> void:
 
 func _on_browse_pressed() -> void:
 	game_manager  = get_node("/root/Main/GameManager")
-	game_manager.join_game()
+	game_manager.join_lobby()
 	queue_free()
 
 
@@ -26,3 +26,16 @@ func _on_back_pressed() -> void:
 	var next_menu = Menus.main_menu.instantiate()
 	get_parent().add_child(next_menu)
 	queue_free()
+
+
+func _on_host_steam_pressed() -> void:
+	game_manager = get_node("/root/Main/GameManager")
+	game_manager.host_game(1)
+	pass # Replace with function body.
+
+
+func _on_list_lobbies_pressed() -> void:
+	game_manager = get_node("/root/Main/GameManager")
+	game_manager.list_steam_lobbies()
+	game_manager.lobby_container = $SteamHUD/Panel/VBoxContainer2/ScrollContainer/LobbyContainer
+	pass
