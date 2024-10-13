@@ -33,8 +33,8 @@ func _process(_delta: float) -> void:
 
 func _initialize_steam() -> void:
 	if Engine.has_singleton("Steam"):
-		OS.set_environment("SteamAppId", str(3227800)) #str(480))#
-		OS.set_environment("SteamGameId", str(3227800)) #str(480))#
+		OS.set_environment("SteamAppId", str(480)) #str(480))#
+		OS.set_environment("SteamGameId", str(480)) #str(480))#
 		
 		var init_response: Dictionary = Steam.steamInit(false)
 		# If the status isn't one, print out the possible error and quit the program
