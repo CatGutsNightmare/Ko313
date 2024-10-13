@@ -5,7 +5,7 @@ var multiplayer_peer: SteamMultiplayerPeer = SteamMultiplayerPeer.new()
 var _players_spawn_node
 var _hosted_lobby_id = 0
 
-const LOBBY_NAME = "MichaelLovesElise"
+const LOBBY_NAME = "Michael Estie The Zestie Bestie"
 const LOBBY_MODE = "CoOP"
 
 func  _ready():
