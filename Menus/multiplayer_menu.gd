@@ -31,6 +31,7 @@ func _on_back_pressed() -> void:
 func _on_host_steam_pressed() -> void:
 	game_manager = get_node("/root/Main/GameManager")
 	game_manager.host_game(1)
+	queue_free()
 	pass # Replace with function body.
 
 

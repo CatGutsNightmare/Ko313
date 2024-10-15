@@ -5,7 +5,7 @@ var multiplayer_peer: SteamMultiplayerPeer = SteamMultiplayerPeer.new()
 var _players_spawn_node
 var _hosted_lobby_id = 0
 
-const LOBBY_NAME = "Michael Estie The Zestie Bestie"
+const LOBBY_NAME = "MichaelxElise"
 const LOBBY_MODE = "CoOP"
 
 func  _ready():
@@ -42,7 +42,7 @@ func _on_lobby_created(connect: int, lobby_id):
 func _create_host():
 	print("Create Host")
 	
-	var error = multiplayer_peer.create_host(0)
+	var error = multiplayer_peer.create_host(0 , [])
 	
 	if error == OK:
 		multiplayer.set_multiplayer_peer(multiplayer_peer)
@@ -77,7 +77,7 @@ func _on_lobby_joined(lobby: int, permissions: int, locked: bool, response: int)
 		print(FAIL_REASON)
 	
 func connect_socket(steam_id: int):
-	var error = multiplayer_peer.create_client(steam_id, 0)
+	var error = multiplayer_peer.create_client(steam_id, 0, [])
 	if error == OK:
 		print("Connecting peer to host...")
 		multiplayer.set_multiplayer_peer(multiplayer_peer)
