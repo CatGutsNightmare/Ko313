@@ -88,7 +88,7 @@ func list_lobbies():
 	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
 	# NOTE: If you are using the test app id, you will need to apply a filter on your game name
 	# Otherwise, it may not show up in the lobby list of your clients
-	#Steam.addRequestLobbyListStringFilter("name", LOBBY_NAME, Steam.LOBBY_COMPARISON_EQUAL)
+	Steam.addRequestLobbyListStringFilter("name", LOBBY_NAME, Steam.LOBBY_COMPARISON_EQUAL)
 	Steam.requestLobbyList()
 
 func _add_player_to_game(id: int):
