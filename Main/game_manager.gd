@@ -1,9 +1,14 @@
 extends Node
 
 var lobby_container : Control
+var player  = preload("res://Player/Player.tscn")
 
 func _ready() -> void:
 		Steam.lobby_match_list.connect(_on_lobby_match_list)
+
+func host_singleplayer():
+	var player_to_add = player.instantiate()
+	get_node("/root/Main/Players").add_child(player_to_add)
 
 func host_game(type = 0):
 	print("Become host pressed")

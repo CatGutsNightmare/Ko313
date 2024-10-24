@@ -1,5 +1,6 @@
 extends Control
 
+var game_manager : Node
 
 @onready var portrait: TextureRect = $Panel/Portrait
 @onready var name_container: Label = $Panel/Name
@@ -13,7 +14,11 @@ func _ready() -> void:
 
 
 func _on_start_pressed() -> void:
-	pass
+	game_manager = get_node("/root/Main/GameManager")
+	game_manager.host_singleplayer()
+	queue_free()
+	
+
 
 
 func _on_multiplayer_pressed() -> void:

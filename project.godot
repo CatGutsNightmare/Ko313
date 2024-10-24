@@ -28,12 +28,9 @@ MultiplayerManager="*res://_Globals/multiplayer_manager.gd"
 
 [display]
 
-window/size/viewport_width=512
-window/size/viewport_height=288
 window/size/always_on_top=true
 window/size/window_width_override=960
 window/size/window_height_override=540
-window/stretch/mode="viewport"
 window/canvas_textures/default_texture_filter=0
 
 [input]
