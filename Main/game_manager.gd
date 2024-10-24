@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func host_singleplayer():
 	var player_to_add = player.instantiate()
-	get_node("/root/Main/Players").add_child(player_to_add)
+	get_node("/root/Main/SubViewport/Players").add_child(player_to_add)
 
 func host_game(type = 0):
 	print("Become host pressed")

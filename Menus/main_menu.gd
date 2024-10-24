@@ -2,13 +2,13 @@ extends Control
 
 var game_manager : Node
 
-@onready var portrait: TextureRect = $Panel/Portrait
-@onready var name_container: Label = $Panel/Name
+@onready var portrait: TextureRect = $MarginContainer/Panel/MarginContainer/HBoxContainer/Portrait
+@onready var name_container: Label = $MarginContainer/Panel/MarginContainer/HBoxContainer/Name
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Helper.connect_signal(Steam.avatar_loaded, _on_avatar_loaded)
-	Steam.getPlayerAvatar(Steam.AVATAR_SMALL, Global.steam_id)
+	Steam.getPlayerAvatar(Steam.AVATAR_MEDIUM, Global.steam_id)
 	name_container.set_text(str(Global.steam_username))
 
 
