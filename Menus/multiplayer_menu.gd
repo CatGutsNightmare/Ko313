@@ -12,8 +12,8 @@ func _on_host_pressed() -> void:
 	#var next_menu = Menus.lobby_menu.instantiate()
 	#get_parent().add_child(next_menu)
 	#queue_free()
-	game_manager = get_node("/root/Main/GameManager")
-	game_manager.host_game()
+	#game_manager = get_node("/root/Main/GameManager")
+	get_node("/root/Main/GameManager").host_game()
 	queue_free()
 
 func _on_browse_pressed() -> void:
@@ -23,9 +23,8 @@ func _on_browse_pressed() -> void:
 
 
 func _on_back_pressed() -> void:
-	var next_menu = Menus.main_menu.instantiate()
-	get_parent().add_child(next_menu)
-	queue_free()
+	Menus.instance_interface("MainMenu")
+	Menus.remove_interface("MultiplayerMenu")
 
 
 func _on_host_steam_pressed() -> void:
