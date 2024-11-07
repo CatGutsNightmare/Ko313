@@ -30,3 +30,7 @@ func calculate_velocity( transform_factor):
 
 func calculate_rotation(delta, rotation_speed):
 	rotation += rotation_direction * rotation_speed * delta
+
+
+func _on_timer_timeout() -> void:
+	queue_free()
