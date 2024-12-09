@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Player/multiplayer_player.gd" id="1_e71w7"]
 [ext_resource type="Script" path="res://Player/input_synchronizer.gd" id="2_kohl8"]
 [ext_resource type="PackedScene" uid="uid://bahbb4i4tknyh" path="res://Components/Graphics/stack_renderer.tscn" id="2_qco6b"]
-[ext_resource type="Texture2D" uid="uid://dipj45mb6vfus" path="res://Sprites/Synoeca.png" id="3_xymqa"]
+[ext_resource type="Texture2D" uid="uid://dukjxwkxxm5l5" path="res://Sprites/ThirdFlesh.png" id="4_4fmff"]
 [ext_resource type="PackedScene" uid="uid://gklr4brsy35a" path="res://Components/Graphics/trail.tscn" id="4_u67ox"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5atoc"]
@@ -49,12 +49,10 @@ script = ExtResource("2_kohl8")
 shape = SubResource("RectangleShape2D_xun0d")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
 
 [node name="StackRenderer" parent="." instance=ExtResource("2_qco6b")]
 position = Vector2(0, 0.5)
-texture = ExtResource("3_xymqa")
-hframes = 3
+texture = ExtResource("4_4fmff")
 frame = 1
 z_depth_offset = 1
 

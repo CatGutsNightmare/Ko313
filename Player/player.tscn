@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_68hvw"]
 [ext_resource type="PackedScene" uid="uid://bahbb4i4tknyh" path="res://Components/Graphics/stack_renderer.tscn" id="2_a4crk"]
+[ext_resource type="Texture2D" uid="uid://cdq3ecniwou1" path="res://Sprites/SeondFlesh.png" id="3_8i8hk"]
 [ext_resource type="PackedScene" uid="uid://gklr4brsy35a" path="res://Components/Graphics/trail.tscn" id="3_8jpax"]
-[ext_resource type="Texture2D" uid="uid://dipj45mb6vfus" path="res://Sprites/Synoeca.png" id="3_uqi4r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xun0d"]
 size = Vector2(8, 1)
@@ -25,8 +25,7 @@ position_smoothing_enabled = true
 
 [node name="StackRenderer" parent="." instance=ExtResource("2_a4crk")]
 position = Vector2(0, 0.5)
-texture = ExtResource("3_uqi4r")
-hframes = 3
+texture = ExtResource("3_8i8hk")
 frame = 1
 z_depth_offset = 1
 

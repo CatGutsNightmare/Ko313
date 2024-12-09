@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Projectile
+
 var current_speed = 0
 var desired_speed = 0
 var acceleration = 5
@@ -7,8 +9,13 @@ var drag = 0.3
 var rotation_direction = 0
 
 
-@onready var bullet_instance := preload("res://Projectiles/bullet.tscn")
+var movement_stats = {"MaximumSpeed":250,"Acceleration":5,"Drag":0.3}
 
+var damage_stats = {"ImpactDamage":10,"DamageType":1,"Penetration":0}
+
+var health_stats = {"Health":2,"Armour":0,"HealthRegeneration":0,"LifeTime":5}
+
+var sprite 
 
 func _ready() -> void:
 	current_speed = 250
@@ -30,7 +37,3 @@ func calculate_velocity( transform_factor):
 
 func calculate_rotation(delta, rotation_speed):
 	rotation += rotation_direction * rotation_speed * delta
-
-
-func _on_timer_timeout() -> void:
-	queue_free()
