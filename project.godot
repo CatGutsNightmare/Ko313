@@ -26,6 +26,7 @@ Menus="*res://_Globals/menus.gd"
 Global="*res://_Globals/global.gd"
 MultiplayerManager="*res://_Globals/multiplayer_manager.gd"
 Reckoner="*res://_Globals/reckoner.gd"
+SignalBus="*res://_Globals/signal_bus.gd"
 
 [display]
 

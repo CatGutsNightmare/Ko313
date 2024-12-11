@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://coc7wat6opio"]
+
+[ext_resource type="Script" path="res://Components/Generic/Ship.gd" id="1_bdtja"]
+[ext_resource type="PackedScene" uid="uid://bahbb4i4tknyh" path="res://Components/Graphics/stack_renderer.tscn" id="2_b0v06"]
+[ext_resource type="Texture2D" uid="uid://dukjxwkxxm5l5" path="res://Sprites/ThirdFlesh.png" id="3_recpy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u30m0"]
+size = Vector2(12, 1)
+
+[node name="Ship" type="CharacterBody2D"]
+script = ExtResource("1_bdtja")
+
+[node name="Weapons" type="Node2D" parent="."]
+
+[node name="Chasers" type="Node2D" parent="Weapons"]
+
+[node name="Broadsides" type="Node2D" parent="Weapons"]
+
+[node name="Turrets" type="Node2D" parent="Weapons"]
+
+[node name="Armour" type="Node2D" parent="."]
+
+[node name="Propulsion" type="Node2D" parent="."]
+
+[node name="Equipment" type="Node2D" parent="."]
+
+[node name="Targeting" type="Node2D" parent="."]
+
+[node name="Storage" type="Node2D" parent="."]
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="StackRenderer" parent="." instance=ExtResource("2_b0v06")]
+texture = ExtResource("3_recpy")
+offset = Vector2(0, 0.5)
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_u30m0")
