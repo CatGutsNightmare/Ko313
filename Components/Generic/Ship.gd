@@ -2,11 +2,6 @@ extends CharacterBody2D
 
 class_name Ship
 
-var eot_timer = true
-
-enum speeds {FULLASTERN,HALFASTERN,SLOWASTERN,STOP,SLOWAHEAD,HALFAHEAD,FULLAHEAD}
-
-
 @export var renderer : StackRenderer 
 
 @export_category("Speed Stats")
@@ -19,7 +14,7 @@ enum speeds {FULLASTERN,HALFASTERN,SLOWASTERN,STOP,SLOWAHEAD,HALFAHEAD,FULLAHEAD
 @export var half_ahead  : int = 40
 @export var full_ahead  : int = 60
 
-enum EOT_Speeds {FULLASTERN,HALFASTERN,SLOWASTERN,STOP,SLOWAHEAD,HALFAHEAD,FULLAHEAD}
+enum EOT_speeds {FULLASTERN,HALFASTERN,SLOWASTERN,STOP,SLOWAHEAD,HALFAHEAD,FULLAHEAD}
 
 @export_group("Misc")
 @export var rotation_speed = 2
@@ -27,24 +22,29 @@ enum EOT_Speeds {FULLASTERN,HALFASTERN,SLOWASTERN,STOP,SLOWAHEAD,HALFAHEAD,FULLA
 @export var drag = 0.3
 @export_category("")
 
-var EOT = EOT_Speeds.STOP
+var EOT_ready = true
+var EOT_timer : float = .5
+var EOT : int = EOT_speeds.STOP
 var desired_speed = 0
 var current_speed = 0
 var rotation_direction = 0
 
 @export_category("Hull Stats")
 @export_group("Health")
-@export var Maxiumum_Health : int = 100
-@export var Health_Regeneration : int = 1
+@export var maximum_health : int = 100
+@export var health_regeneration : int = 1
 
 func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	pass
+	capture_inputs()
+	EOT_timer_driver(1,delta)
 
+
+## This function handles acceleration, velocity & drag.
+## This function holds up proper movement and is not to be changed even on pain of death.
 func calculate_velocity(transform_factor, acceleration, drag):
-	
 	if current_speed < desired_speed:
 		current_speed += acceleration * drag
 	elif current_speed > desired_speed:
@@ -56,22 +56,43 @@ func calculate_velocity(transform_factor, acceleration, drag):
 func calculate_rotation(delta):
 	rotation += rotation_direction * rotation_speed * delta
 
-func _on_eot_timer_timeout() -> void:
-	eot_timer = true
+## The following function is a  bypass for a basic timer.
+func EOT_timer_driver(the_rest_amount:float,time_increment:float):
+	if !EOT_ready:
+		EOT_timer = EOT_timer - time_increment
+		if EOT_timer <= 0:
+			EOT_ready = true
+			EOT_timer = the_rest_amount
+			print(str(EOT))
+
 
 func set_desired_speed():
 	match EOT:
-		EOT_Speeds.FULLASTERN:
+		EOT_speeds.FULLASTERN:
 			desired_speed = full_astern
-		EOT_Speeds.HALFASTERN:
+		EOT_speeds.HALFASTERN:
 			desired_speed = half_astern
-		EOT_Speeds.SLOWASTERN:
+		EOT_speeds.SLOWASTERN:
 			desired_speed = slow_astern
-		EOT_Speeds.STOP:
+		EOT_speeds.STOP:
 			desired_speed = stop
-		EOT_Speeds.SLOWAHEAD:
+		EOT_speeds.SLOWAHEAD:
 			desired_speed = slow_ahead
-		EOT_Speeds.HALFAHEAD: 
+		EOT_speeds.HALFAHEAD: 
 			desired_speed = half_ahead
-		EOT_Speeds.FULLAHEAD: 
+		EOT_speeds.FULLAHEAD: 
 			desired_speed = full_ahead
+
+func capture_inputs():
+	if Input.is_action_pressed("up") && EOT != EOT_speeds.FULLAHEAD  && EOT_ready:
+		EOT_ready = false
+		EOT += 1
+	#elif Input.is_action_just_pressed("up") && EOT <=6:
+		#EOT += 1
+	#elif Input.is_action_pressed("down") && EOT >= 0 && EOT_ready:
+		#EOT_ready = false
+#
+		#EOT+= -1
+	#elif Input.is_action_just_pressed("down") && EOT >= 0:
+		#EOT+= -1
+	#rotation_direction = Input.get_axis("left", "right") 
